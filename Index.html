@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phiếu học tập tương tác - Nitrogen</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+:root{--ink:#24324a;--muted:#64748b;--line:#dbe4f0;--blue:#2563eb;--green:#15803d;--red:#b91c1c;--bg:#f3f6fb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Roboto,Arial,sans-serif;line-height:1.55}
+header{background:linear-gradient(115deg,#1677e8,#4338ca,#7c3aed);color:#fff;padding:28px 16px 24px;text-align:center}
+header .eyebrow{font-size:.82rem;letter-spacing:.12em;font-weight:700;opacity:.9}header h1{font-size:clamp(1.45rem,4vw,2.15rem);margin:5px 0}header p{margin:0;font-size:1.12rem;font-weight:500}
+.wrap{width:min(1080px,94%);margin:20px auto 42px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin:16px 0;box-shadow:0 5px 18px #1e3a8a0d}
+h2{font-size:1.18rem;margin:0 0 12px}h3{margin:0 0 8px;font-size:1.05rem}.meta{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+label{display:block;font-weight:700;font-size:.92rem;margin-bottom:5px}input[type=text],input[type=number],input[type=password],select,textarea{font:inherit;border:1px solid #cbd5e1;border-radius:9px;padding:9px 10px;background:#fff;color:var(--ink);max-width:100%}
+input[type=text],textarea{width:100%}.instructions{background:#eff6ff;border-color:#bfdbfe}.instructions ul{margin:6px 0 0;padding-left:22px}
+.station{border-top:5px solid var(--accent);overflow:hidden}.station .station-title{display:flex;gap:10px;align-items:flex-start}.station .number{background:var(--accent);color:white;border-radius:12px;min-width:40px;height:40px;display:grid;place-items:center;font-weight:900}
+.station .subtitle{color:var(--muted);margin-top:-5px;margin-bottom:12px}.question{padding:13px 0;border-top:1px dashed var(--line)}.question:first-of-type{border-top:0}
+select.answer{min-width:100px;display:inline-block;margin:3px 2px;padding:6px 8px}.blank{display:inline-block;min-width:125px;max-width:100%;margin:3px 2px;padding:6px 8px;border:1px solid #94a3b8;border-radius:8px;background:#fff}
+.bank{display:flex;flex-wrap:wrap;gap:8px;padding:12px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px;margin:10px 0}.token{padding:7px 11px;background:#e0e7ff;border:1px solid #a5b4fc;border-radius:9px;cursor:grab;user-select:none;font-weight:700;touch-action:manipulation}.token:active{cursor:grabbing}.drop{display:inline-flex;align-items:center;justify-content:center;min-width:105px;min-height:39px;padding:5px 8px;border:2px dashed #94a3b8;border-radius:9px;background:#f8fafc;vertical-align:middle;margin:3px}.drop.filled{border-style:solid;background:#eef2ff}.drop.correct,.answer.correct{border-color:#22c55e!important;background:#dcfce7!important;color:#166534!important}.drop.wrong,.answer.wrong{border-color:#ef4444!important;background:#fee2e2!important;color:#991b1b!important}.feedback{font-weight:700;margin-left:6px}.correct-text{color:var(--green)}.wrong-text{color:var(--red)}.unanswered{color:#a16207}.scorebar{display:none;border-radius:16px;padding:20px;text-align:center;background:#ecfdf5;border:1px solid #86efac;margin:18px 0}.scorebig{font-size:2.2rem;font-weight:900;color:#166534}.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:22px 0}.btn{border:0;border-radius:11px;padding:12px 18px;font:inherit;font-weight:800;cursor:pointer;box-shadow:0 3px 8px #0f172a15}.primary{background:#2563eb;color:#fff}.secondary{background:#e2e8f0;color:#1e293b}.adminbtn{position:fixed;right:12px;bottom:12px;z-index:10;background:#111827;color:#fff;border:0;border-radius:999px;padding:11px 15px;font-weight:800;box-shadow:0 4px 15px #0003;cursor:pointer}.admin{display:none;border:2px solid #64748b;background:#f8fafc}.admin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.admin-section{padding:12px;background:white;border:1px solid var(--line);border-radius:12px}.admin-section label{margin-top:8px}.status{font-size:.9rem;color:var(--muted)}.memory{background:#fffbeb;border-color:#fcd34d}.memory li{margin:6px 0}.media-preview{max-width:100%;max-height:260px;border-radius:12px;display:block;margin-top:10px}.video-wrap video{width:100%;max-height:320px;border-radius:12px;background:#111}.image-choice{display:flex;flex-wrap:wrap;gap:8px}.image-choice img{width:100px;height:72px;object-fit:cover;border-radius:8px;border:2px solid var(--line);cursor:pointer}.image-choice img.selected{border-color:#2563eb}.hidden{display:none!important}.small{font-size:.88rem;color:var(--muted)}.table-scroll{overflow-x:auto}.oxidation-row{display:grid;grid-template-columns:repeat(7,minmax(58px,1fr));gap:6px;margin:12px 0}.oxcell{text-align:center;min-width:0}.oxhead{background:#e0e7ff;border-radius:8px;padding:8px 2px;font-weight:900}.oxdrop{width:100%;min-width:0;min-height:55px}.note{font-size:.9rem;color:#475569}
+@media(max-width:640px){.wrap{width:96%;margin-top:12px}.card{padding:14px;border-radius:14px}.meta,.admin-grid{grid-template-columns:1fr}.oxidation-row{grid-template-columns:repeat(7,minmax(45px,1fr));gap:3px;overflow-x:auto}.oxhead{font-size:.8rem}.oxdrop{font-size:.76rem;padding:3px}.blank{min-width:105px}.drop{min-width:90px}.adminbtn{right:8px;bottom:8px}}
+@media print{body{background:white}.adminbtn,.actions,.admin{display:none!important}.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+ <div class="eyebrow">PHIẾU HỌC TẬP TƯƠNG TÁC</div>
+ <h1 id="headLesson">NITROGEN</h1>
+ <p id="headContent">Tính chất hóa học của Nitrogen</p>
+</header>
+<main class="wrap">
+ <section class="card">
+  <h2>👩‍🎓 Thông tin học sinh</h2>
+  <div class="meta"><div><label for="studentName">Họ và tên</label><input id="studentName" type="text" placeholder="Nhập họ và tên của em"></div><div><label for="studentClass">Lớp</label><input id="studentClass" type="text" value="11A2" placeholder="Ví dụ: 11A2"></div></div>
+ </section>
+ <section class="card instructions">
+  <h2>🎯 Mục tiêu & hướng dẫn</h2>
+  <ul><li>Giải thích được tính trơ tương đối của phân tử N₂ từ liên kết ba bền vững.</li><li>Xác định số oxi hóa của nitrogen trong N₂, NH₃ và NO.</li><li>Dự đoán được sự thay đổi số oxi hóa của nitrogen trong phản ứng với H₂ và O₂.</li><li>Thao tác kéo thả hoặc chọn đáp án trong từng trạm; sau khi hoàn thành, nhấn <b>NỘP BÀI & CHẤM ĐIỂM</b>.</li></ul>
+  <p class="small">Mỗi câu đúng mới được tính điểm. Câu bỏ trống không được tính điểm; sau khi nộp, phiếu sẽ hiển thị phản hồi và đáp án phù hợp.</p>
+ </section>
+
+ <section class="card station" id="station1" style="--accent:#0d9488" data-station="s1">
+  <div class="station-title"><div class="number">1</div><div><h2>THÀNH TRÌ KIÊN CỐ</h2><div class="subtitle">Giải mã tính trơ của nitrogen · Kéo từ/cụm từ vào chỗ trống</div></div></div>
+  <p>Ngân hàng từ khóa:</p><div class="bank" id="bank1"></div>
+  <div id="s1questions">
+   <div class="question"><span>Phân tử nitrogen (N₂) gồm hai nguyên tử nitrogen liên kết với nhau bằng liên kết </span><span class="drop" data-answer="ba" data-q="s1q1" tabindex="0">Thả từ vào đây</span><span>.</span></div>
+   <div class="question"><span>Do có năng lượng liên kết rất lớn là </span><span class="drop" data-answer="945 kJ/mol" data-q="s1q2" tabindex="0">Thả từ vào đây</span><span>, liên kết này </span><span class="drop" data-answer="rất bền vững" data-q="s1q3" tabindex="0">Thả từ vào đây</span><span> và khó bị phá vỡ.</span></div>
+   <div class="question"><span>Vì vậy, ở nhiệt độ thường, nitrogen </span><span class="drop" data-answer="kém hoạt động (khá trơ)" data-q="s1q4" tabindex="0">Thả từ vào đây</span><span> về mặt hóa học. Nitrogen chỉ trở nên hoạt động hóa học mạnh hơn ở </span><span class="drop" data-answer="nhiệt độ cao" data-q="s1q5" tabindex="0">Thả từ vào đây</span><span> hoặc khi có tia lửa điện.</span></div>
+  </div>
+ </section>
+
+ <section class="card station" id="station2" style="--accent:#7c3aed" data-station="s2">
+  <div class="station-title"><div class="number">2</div><div><h2>NGÃ RẼ CUỘC ĐỜI</h2><div class="subtitle">Dự đoán khuynh hướng oxi hóa – khử</div></div></div>
+  <h3>Phần A. Phân loại số oxi hóa của nitrogen</h3>
+  <p>Kéo thẻ chất vào cột có số oxi hóa tương ứng. Các thẻ đã được xáo trộn.</p>
+  <div class="bank" id="bank2"></div>
+  <div class="table-scroll"><div class="oxidation-row" id="oxidationRow"></div></div>
+  <h3 style="margin-top:20px">Phần B. Chọn thông tin đúng</h3>
+  <div class="question">1. Trong đơn chất N₂, nitrogen có số oxi hóa là <select class="answer" data-answer="0" data-q="s2b1a"><option value="">-- Chọn --</option><option>-3</option><option>0</option></select>. Đây là mức oxi hóa <select class="answer" data-answer="trung gian" data-q="s2b1b"><option value="">-- Chọn --</option><option>thấp nhất</option><option>trung gian</option><option>cao nhất</option></select>.</div>
+  <div class="question">2. Khi tham gia phản ứng hóa học, số oxi hóa của nitrogen trong N₂ có thể <select class="answer" data-answer="giảm" data-q="s2b2a"><option value="">-- Chọn --</option><option>tăng</option><option>giảm</option></select> xuống −3, thể hiện <select class="answer" data-answer="tính oxi hóa" data-q="s2b2b"><option value="">-- Chọn --</option><option>tính oxi hóa</option><option>tính khử</option></select>.</div>
+  <div class="question">3. Mặt khác, số oxi hóa của nitrogen trong N₂ cũng có thể <select class="answer" data-answer="tăng" data-q="s2b3a"><option value="">-- Chọn --</option><option>tăng</option><option>giảm</option></select> lên các mức như +2, +4, thể hiện <select class="answer" data-answer="tính khử" data-q="s2b3b"><option value="">-- Chọn --</option><option>tính oxi hóa</option><option>tính khử</option></select>.</div>
+  <div class="question">4. Kết luận: nitrogen vừa có <select class="answer" data-answer="tính oxi hóa và tính khử" data-q="s2b4"><option value="">-- Chọn --</option><option>tính oxi hóa</option><option>tính khử</option><option>tính oxi hóa và tính khử</option></select>.</div>
+ </section>
+
+ <section class="card station" id="station3" style="--accent:#ea580c" data-station="s3">
+  <div class="station-title"><div class="number">3</div><div><h2>BẮT TAY CÙNG HYDROGEN</h2><div class="subtitle">Chinh phục tính oxi hóa</div></div></div>
+  <div style="padding:12px;background:#fff7ed;border-radius:12px;text-align:center;font-size:1.1rem;font-weight:700">N₂(g) + 3H₂(g) ⇌ 2NH₃(g) &nbsp; ΔH = −92 kJ</div>
+  <div class="question">1. Trước phản ứng, số oxi hóa của nitrogen trong N₂ là <select class="answer" data-answer="0" data-q="s3q1"><option value="">-- Chọn --</option><option>−3</option><option>0</option></select>.</div>
+  <div class="question">2. Sau phản ứng tạo thành NH₃, số oxi hóa của nitrogen là <select class="answer" data-answer="-3" data-q="s3q2"><option value="">-- Chọn --</option><option value="-3">−3</option><option value="0">0</option></select>.</div>
+  <div class="question">3. Trong phản ứng trên, số oxi hóa của nitrogen <select class="answer" data-answer="giảm" data-q="s3q3a"><option value="">-- Chọn --</option><option>tăng</option><option>giảm</option></select>, nên nitrogen đóng vai trò là <select class="answer" data-answer="chất oxi hóa" data-q="s3q3b"><option value="">-- Chọn --</option><option>chất oxi hóa</option><option>chất khử</option></select>.</div>
+ </section>
+
+ <section class="card station" id="station4" style="--accent:#db2777" data-station="s4">
+  <div class="station-title"><div class="number">4</div><div><h2>TIA CHỚP RỰC LỬA</h2><div class="subtitle">Khẳng định tính khử</div></div></div>
+  <div style="padding:12px;background:#fdf2f8;border-radius:12px;text-align:center;font-size:1.1rem;font-weight:700">N₂(g) + O₂(g) ⇌ 2NO(g)</div>
+  <div class="question">1. Trước phản ứng, số oxi hóa của nitrogen trong N₂ là <select class="answer" data-answer="0" data-q="s4q1"><option value="">-- Chọn --</option><option>0</option><option>+2</option></select>.</div>
+  <div class="question">2. Sau phản ứng tạo thành NO, số oxi hóa của nitrogen là <select class="answer" data-answer="+2" data-q="s4q2"><option value="">-- Chọn --</option><option>0</option><option>+2</option></select>.</div>
+  <div class="question">3. Trong phản ứng trên, số oxi hóa của nitrogen <select class="answer" data-answer="tăng" data-q="s4q3a"><option value="">-- Chọn --</option><option>tăng</option><option>giảm</option></select>, nên nitrogen đóng vai trò là <select class="answer" data-answer="chất khử" data-q="s4q3b"><option value="">-- Chọn --</option><option>chất oxi hóa</option><option>chất khử</option></select>.</div>
+ </section>
+
+ <section class="card video-wrap hidden" id="videoCard">
+  <h2>🎬 Video bài học</h2><video id="lessonVideo" controls></video><p class="small">Nếu giáo viên cung cấp video, xem video rồi hoàn thành các nhiệm vụ trên phiếu.</p>
+ </section>
+ <div class="actions"><button class="btn primary" id="submitBtn">✓ NỘP BÀI & CHẤM ĐIỂM</button><button class="btn secondary" id="resetBtn">Làm lại</button></div>
+ <section class="scorebar" id="scorebar" aria-live="polite"><h2>ĐIỂM CỦA EM</h2><div class="scorebig"><span id="scoreEarned">0</span> / <span id="scoreTotal">10</span></div><p id="scoreMessage"></p><p id="scoreDetail"></p></section>
+ <section class="card memory"><h2>⚡ GHI NHỚ SIÊU NHANH</h2><ol id="memoryList">
+  <li>Phân tử N₂ có liên kết ba N≡N bền vững, năng lượng liên kết lớn khoảng 945 kJ/mol, nên nitrogen kém hoạt động hóa học ở nhiệt độ thường; nitrogen hoạt động mạnh hơn ở nhiệt độ cao hoặc khi có tia lửa điện.</li>
+  <li>Nitrogen trong N₂ có số oxi hóa 0; có thể giảm xuống −3 hoặc tăng lên các số oxi hóa dương, nên vừa thể hiện tính oxi hóa, vừa thể hiện tính khử.</li>
+  <li>Khi phản ứng với H₂ tạo NH₃, nitrogen bị khử từ 0 xuống −3; N₂ đóng vai trò chất oxi hóa.</li>
+  <li>Khi phản ứng với O₂ tạo NO, nitrogen bị oxi hóa từ 0 lên +2; N₂ đóng vai trò chất khử.</li>
+ </ol></section>
+
+ <section class="card admin" id="adminPanel">
+  <h2>⚙️ QUẢN TRỊ GIÁO VIÊN</h2>
+  <p class="note">Thay đổi cấu hình tại đây. Tổng điểm phân bổ của các trạm đang bật phải bằng tổng điểm toàn phiếu mới lưu được.</p>
+  <div class="admin-grid">
+   <div class="admin-section">
+    <h3>Thông tin phiếu</h3>
+    <label for="cfgTitle">Tên bài học</label><input id="cfgTitle" type="text" value="Nitrogen">
+    <label for="cfgSubject">Môn học</label><input id="cfgSubject" type="text" value="Hóa học">
+    <label for="cfgClass">Khối/lớp</label><input id="cfgClass" type="text" value="11A2">
+    <label for="cfgContent">Nội dung bài học</label><input id="cfgContent" type="text" value="Tính chất hóa học của Nitrogen">
+    <label for="cfgTotal">Tổng điểm toàn phiếu</label><input id="cfgTotal" type="number" min="0.1" max="100" step="0.1" value="10">
+    <p class="status" id="scoreCheck">Tổng điểm các trạm: 10 / 10</p>
+   </div>
+   <div class="admin-section">
+    <h3>Bật/tắt và phân bổ điểm</h3>
+    <div id="stationSettings"></div>
+   </div>
+   <div class="admin-section">
+    <h3>Video bài học</h3>
+    <label for="videoUrl">Đường dẫn video (nếu có)</label><input id="videoUrl" type="text" placeholder="https://...">
+    <label for="videoUpload">Hoặc tải video từ máy</label><input id="videoUpload" type="file" accept="video/*">
+    <video id="videoPreview" class="media-preview hidden" controls></video>
+   </div>
+   <div class="admin-section">
+    <h3>Ảnh minh họa cho phần kéo thả</h3>
+    <label for="imageUpload">Tải ảnh từ máy</label><input id="imageUpload" type="file" accept="image/*">
+    <img id="imagePreview" class="media-preview hidden" alt="Ảnh minh họa đã tải lên">
+    <p class="small">Ảnh sẽ được thêm vào Trạm 1 để học sinh quan sát khi làm bài.</p>
+   </div>
+  </div>
+  <div class="actions"><button class="btn primary" id="saveConfig">Lưu cấu hình</button><button class="btn secondary" id="closeAdmin">Đóng quản trị</button><button class="btn secondary" id="restoreConfig">Khôi phục mặc định</button></div>
+  <p class="small">Cấu hình được lưu trong trình duyệt này bằng localStorage khi dung lượng cho phép. Video/ảnh dung lượng lớn có thể không lưu được sau khi đóng trình duyệt.</p>
+ </section>
+</main>
+<button class="adminbtn" id="adminOpen">⚙️ QUẢN TRỊ</button>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const defaults = {title:'Nitrogen',subject:'Hóa học',klass:'11A2',content:'Tính chất hóa học của Nitrogen',total:10,stations:{
+ s1:{enabled:true,points:2.5,count:5},s2:{enabled:true,points:2.5,count:10},s3:{enabled:true,points:2.5,count:4},s4:{enabled:true,points:2.5,count:4}
+},videoUrl:'',videoData:'',imageData:''};
+let cfg = structuredClone(defaults), submitted=false, videoObjectUrl='', imageObjectUrl='';
+const wordBank1=['ba','945 kJ/mol','rất bền vững','kém hoạt động (khá trơ)','nhiệt độ cao'];
+const substances=[{label:'NO',answer:'+2'},{label:'N₂',answer:'0'},{label:'NH₃',answer:'-3'}];
+const oxValues=['-3','0','+1','+2','+3','+4','+5'];
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function makeToken(label,bank){
+ const el=document.createElement('button');el.type='button';el.className='token';el.draggable=true;el.textContent=label;el.dataset.value=label;el.dataset.bank=bank;
+ el.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',JSON.stringify({label,bank}));e.dataTransfer.effectAllowed='move';});
+ el.addEventListener('click',()=>{
+  const targets=[...document.querySelectorAll('.drop')].filter(d=>!d.dataset.value && d.dataset.bank===bank && !d.classList.contains('disabled-drop'));
+  if(targets.length)putToken(targets[0],label,el);
+ });
+ return el;
+}
+function putToken(target,label,token){target.textContent=label;target.dataset.value=label;target.classList.add('filled');if(token)token.remove();else{const source=target.dataset.bank==='bank2'?'bank2':'bank1';const b=$(source);const existing=[...b.children].find(x=>x.dataset.value===label);if(existing)existing.remove();}if(submitted)grade();}
+function setupBanks(){
+ $('bank1').innerHTML='';shuffle([...wordBank1]).forEach(w=>$('bank1').appendChild(makeToken(w,'bank1')));
+ $('bank2').innerHTML='';shuffle([...substances]).forEach(s=>$('bank2').appendChild(makeToken(s.label,'bank2')));
+ $('oxidationRow').innerHTML='';
+ oxValues.forEach(v=>{
+  const cell=document.createElement('div');cell.className='oxcell';
+  const h=document.createElement('div');h.className='oxhead';h.textContent=v;
+  if(['-3','0','+2'].includes(v)){
+   const d=document.createElement('div');d.className='drop oxdrop';d.dataset.answer=substances.find(s=>s.answer===v)?.label||'';d.dataset.q='s2a_'+v;d.dataset.bank='bank2';d.textContent='Thả thẻ';d.tabIndex=0;
+   cell.append(h,d);
+  } else {
+   const d=document.createElement('div');d.className='drop oxdrop disabled-drop';d.textContent='—';d.setAttribute('aria-label','Không cần thả thẻ vào cột này');d.style.borderStyle='solid';d.style.borderColor='#e2e8f0';d.style.background='#f8fafc';d.style.color='#94a3b8';d.style.cursor='default';d.style.pointerEvents='none';
+   cell.append(h,d);
+  }
+  $('oxidationRow').appendChild(cell);
+ });
+ document.querySelectorAll('.drop:not(.disabled-drop)').forEach(d=>{
+  if(d.closest('#station1')) d.dataset.bank='bank1';
+  d.addEventListener('dragover',e=>{e.preventDefault();d.style.background='#dbeafe';});
+  d.addEventListener('dragleave',()=>{d.style.background='';});
+  d.addEventListener('drop',e=>{
+   e.preventDefault();d.style.background='';
+   let payload;try{payload=JSON.parse(e.dataTransfer.getData('text/plain'));}catch(err){payload={label:e.dataTransfer.getData('text/plain'),bank:d.dataset.bank};}
+   const val=payload.label,bank=payload.bank||d.dataset.bank;
+   if(!val||bank!==d.dataset.bank)return;
+   const source=$(bank);const token=[...source.children].find(t=>t.dataset.value===val);
+   if(d.dataset.value){source.appendChild(makeToken(d.dataset.value,bank));}
+   putToken(d,val,token);
+  });
+  d.addEventListener('click',()=>{
+   if(d.dataset.value){
+    const bank=$(d.dataset.bank||'bank1');bank.appendChild(makeToken(d.dataset.value,bank.id));
+    d.dataset.value='';d.classList.remove('filled','correct','wrong');d.textContent=d.classList.contains('oxdrop')?'Thả thẻ':'Thả từ vào đây';
+    if(submitted)grade();
+   }
+  });
+  d.addEventListener('keydown',e=>{
+   if(e.key==='Enter'||e.key===' '){e.preventDefault();const bank=$(d.dataset.bank);const token=bank?.firstElementChild;if(token)putToken(d,token.dataset.value,token);}
+  });
+ });
+}
+function buildSettings(){
+ const root=$('stationSettings');root.innerHTML='';
+ const labels={s1:'Trạm 1 · Thành trì kiên cố',s2:'Trạm 2 · Số oxi hóa',s3:'Trạm 3 · Với hydrogen',s4:'Trạm 4 · Với oxygen'};
+ Object.keys(cfg.stations).forEach(key=>{const s=cfg.stations[key],div=document.createElement('div');div.className='admin-section';div.style.margin='8px 0';div.innerHTML=`<label><input type="checkbox" id="en_${key}" ${s.enabled?'checked':''}> ${labels[key]}</label><label for="pt_${key}">Điểm tối đa</label><input id="pt_${key}" type="number" min="0" max="100" step="0.1" value="${s.points}"><label for="ct_${key}">Số câu/ô đang sử dụng</label><input id="ct_${key}" type="number" min="1" max="${key==='s1'?5:key==='s2'?10:4}" value="${s.count}">`;root.appendChild(div);});
+ root.querySelectorAll('input').forEach(el=>el.addEventListener('input',updateScoreCheck));
+ updateScoreCheck();
+}
+function readSettings(){Object.keys(cfg.stations).forEach(k=>{cfg.stations[k].enabled=$('en_'+k).checked;cfg.stations[k].points=Math.max(0,Number($('pt_'+k).value)||0);cfg.stations[k].count=Math.max(1,parseInt($('ct_'+k).value,10)||1);});cfg.total=Math.max(0.1,Number($('cfgTotal').value)||10);}
+function updateScoreCheck(){readSettings();const sum=Object.values(cfg.stations).filter(s=>s.enabled).reduce((a,s)=>a+s.points,0);$('scoreCheck').textContent=`Tổng điểm các trạm đang bật: ${round(sum)} / ${round(cfg.total)} ${Math.abs(sum-cfg.total)<0.001?'✓ Khớp':'⚠ Chưa khớp — hãy điều chỉnh trước khi lưu'}`;$('scoreCheck').style.color=Math.abs(sum-cfg.total)<0.001?'#15803d':'#b91c1c';}
+function applyConfig(){
+ $('headLesson').textContent=cfg.title.toUpperCase();$('headContent').textContent=cfg.content;$('studentClass').value=cfg.klass;
+ Object.keys(cfg.stations).forEach(k=>{const s=cfg.stations[k];const card=$('station'+k.slice(1));card.classList.toggle('hidden',!s.enabled);card.dataset.maxpoints=s.points;});
+ $('scoreTotal').textContent=cfg.total;
+ if(cfg.videoData||cfg.videoUrl){$('videoCard').classList.remove('hidden');const v=$('lessonVideo');v.src=cfg.videoData||cfg.videoUrl;}else $('videoCard').classList.add('hidden');
+ if(cfg.imageData){$('imagePreview').src=cfg.imageData;$('imagePreview').classList.remove('hidden');let im=$('dragImage');if(!im){im=document.createElement('img');im.id='dragImage';im.className='media-preview';im.alt='Ảnh minh họa';$('station1').insertBefore(im,$('bank1'));}im.src=cfg.imageData;}else{$('imagePreview').classList.add('hidden');$('dragImage')?.remove();}
+ const mem=$('memoryList');mem.innerHTML='';[
+ 'Phân tử N₂ có liên kết ba N≡N bền vững, năng lượng liên kết lớn khoảng 945 kJ/mol, nên nitrogen kém hoạt động hóa học ở nhiệt độ thường; nitrogen hoạt động mạnh hơn ở nhiệt độ cao hoặc khi có tia lửa điện.',
+ 'Nitrogen trong N₂ có số oxi hóa 0; có thể giảm xuống −3 hoặc tăng lên các số oxi hóa dương, nên vừa thể hiện tính oxi hóa, vừa thể hiện tính khử.',
+ 'Khi phản ứng với H₂ tạo NH₃, nitrogen bị khử từ 0 xuống −3; N₂ đóng vai trò chất oxi hóa.',
+ 'Khi phản ứng với O₂ tạo NO, nitrogen bị oxi hóa từ 0 lên +2; N₂ đóng vai trò chất khử.'
+ ].forEach(t=>{const li=document.createElement('li');li.textContent=t;mem.appendChild(li);});
+}
+function round(n){return Math.round((n+Number.EPSILON)*100)/100;}
+function questionsFor(key){
+ const card=$('station'+key.slice(1));
+ if(key==='s1')return [...card.querySelectorAll('.drop[data-q^="s1"]')].slice(0,cfg.stations.s1.count);
+ if(key==='s2')return [...card.querySelectorAll('select.answer[data-q^="s2"], .oxdrop:not(.disabled-drop)')].slice(0,cfg.stations.s2.count);
+ return [...card.querySelectorAll('select.answer')].slice(0,cfg.stations[key].count);
+}
+function clearFeedback(){document.querySelectorAll('.correct,.wrong').forEach(e=>e.classList.remove('correct','wrong'));document.querySelectorAll('.feedback,.answerhint').forEach(e=>e.remove());}
+function grade(){
+ clearFeedback();let total=0,detail=[];
+ Object.keys(cfg.stations).forEach(key=>{
+  const s=cfg.stations[key];if(!s.enabled)return;
+  const qs=questionsFor(key);let correct=0,answered=0;
+  qs.forEach(q=>{
+   const isDrop=q.classList.contains('drop');const val=isDrop?(q.dataset.value||''):q.value;const ans=q.dataset.answer||'';
+   if(val!=='')answered++;
+   const ok=val!==''&&val===ans;
+   if(ok){correct++;q.classList.add('correct');}
+   else if(val!==''){q.classList.add('wrong');}
+   const fb=document.createElement('span');fb.className='feedback '+(ok?'correct-text':val?'wrong-text':'unanswered');fb.textContent=ok?'✓':val?'✗':'Chưa trả lời';
+   if(!isDrop)q.insertAdjacentElement('afterend',fb);else q.insertAdjacentElement('afterend',fb);
+   if(!ok&&val!==''&&ans){const hint=document.createElement('span');hint.className='small answerhint';hint.textContent=' Đáp án: '+ans;q.insertAdjacentElement('afterend',hint);}
+  });
+  const pts=qs.length?correct/qs.length*s.points:0;total+=pts;detail.push(`${key.toUpperCase()}: ${correct}/${qs.length} câu đúng = ${round(pts)}/${round(s.points)} điểm`);
+ });
+ $('scoreEarned').textContent=round(total);$('scoreTotal').textContent=cfg.total;$('scorebar').style.display='block';
+ $('scoreMessage').textContent=$('studentName').value.trim()?`Học sinh: ${$('studentName').value.trim()} · Lớp ${$('studentClass').value.trim()}`:'Em hãy nhập họ tên để lưu dấu thông tin bài làm.';
+ $('scoreDetail').textContent=detail.join(' | ');submitted=true;$('scorebar').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function resetQuiz(){submitted=false;document.querySelectorAll('.drop').forEach(d=>{d.dataset.value='';d.classList.remove('filled','correct','wrong');d.textContent=d.classList.contains('oxdrop')?'Thả thẻ':'Thả từ vào đây';});document.querySelectorAll('select.answer').forEach(s=>{s.value='';s.classList.remove('correct','wrong');});document.querySelectorAll('.feedback,.small.answerhint').forEach(e=>e.remove());$('scorebar').style.display='none';setupBanks();}
+function loadAdminInputs(){ $('cfgTitle').value=cfg.title;$('cfgSubject').value=cfg.subject;$('cfgClass').value=cfg.klass;$('cfgContent').value=cfg.content;$('cfgTotal').value=cfg.total;$('videoUrl').value=cfg.videoUrl||'';buildSettings();}
+function openAdmin(){const pw=prompt('Nhập mật khẩu quản trị giáo viên:');if(pw==='1230'){loadAdminInputs();$('adminPanel').style.display='block';$('adminPanel').scrollIntoView({behavior:'smooth'});}else if(pw!==null)alert('Mật khẩu chưa đúng.');}
+function saveConfig(){readSettings();const sum=Object.values(cfg.stations).filter(s=>s.enabled).reduce((a,s)=>a+s.points,0);if(Math.abs(sum-cfg.total)>0.001){alert(`Không thể lưu: tổng điểm các trạm đang bật là ${round(sum)}, khác tổng điểm phiếu ${round(cfg.total)}. Vui lòng điều chỉnh.`);return;}
+ cfg.title=$('cfgTitle').value.trim()||'Nitrogen';cfg.subject=$('cfgSubject').value.trim()||'Hóa học';cfg.klass=$('cfgClass').value.trim()||'11A2';cfg.content=$('cfgContent').value.trim()||'Tính chất hóa học của Nitrogen';cfg.videoUrl=$('videoUrl').value.trim();
+ try{localStorage.setItem('phtNitrogenConfig',JSON.stringify(cfg));}catch(e){alert('Cấu hình đã áp dụng nhưng trình duyệt không đủ dung lượng để lưu media.');}
+ applyConfig();$('adminPanel').style.display='none';resetQuiz();alert('Đã lưu và áp dụng cấu hình.');}
+function restore(){if(!confirm('Khôi phục cấu hình mặc định?'))return;cfg=structuredClone(defaults);try{localStorage.removeItem('phtNitrogenConfig');}catch(e){}loadAdminInputs();applyConfig();resetQuiz();}
+$('submitBtn').addEventListener('click',()=>{grade();});
+$('resetBtn').addEventListener('click',resetQuiz);$('adminOpen').addEventListener('click',openAdmin);$('closeAdmin').addEventListener('click',()=>$('adminPanel').style.display='none');$('saveConfig').addEventListener('click',saveConfig);$('restoreConfig').addEventListener('click',restore);
+$('cfgTotal').addEventListener('input',updateScoreCheck);
+$('videoUpload').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const reader=new FileReader();reader.onload=()=>{cfg.videoData=reader.result;$('videoPreview').src=reader.result;$('videoPreview').classList.remove('hidden');};reader.readAsDataURL(f);});
+$('imageUpload').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const reader=new FileReader();reader.onload=()=>{cfg.imageData=reader.result;$('imagePreview').src=reader.result;$('imagePreview').classList.remove('hidden');};reader.readAsDataURL(f);});
+try{const saved=localStorage.getItem('phtNitrogenConfig');if(saved){const parsed=JSON.parse(saved);cfg={...structuredClone(defaults),...parsed,stations:{...structuredClone(defaults.stations),...(parsed.stations||{})}};}}catch(e){}
+setupBanks();loadAdminInputs();applyConfig();
+})();
+</script>
+</body>
+</html>
